@@ -8,7 +8,6 @@ Based on the idea of [autodock](dockerun -v /var/run/docker.sock:/var/run/docker
 - Simplify the webhook receiving part by assuming we can just spin up a new container for each webhook we want to capture.
 - Added a runner configuration that allows the configuration of the shell environment, defaults to `sh -c {{cmd}}`
 - Improved argument-to-command parsing and made it easier to specify several commands after each other
-- added unit tests for argument parsing
 
 ```
 docker run -v $HOSTPATH_TO_SOCKET:/var/run/docker.sock -p 30000:30000 adminibar/auto-exec 'docker pull'
