@@ -10,7 +10,7 @@ Based on the idea of [autodock](dockerun -v /var/run/docker.sock:/var/run/docker
 - Improved argument-to-command parsing and made it easier to specify several commands after each other
 
 ```
-docker run -v $HOSTPATH_TO_SOCKET:/var/run/docker.sock -p 30000:30000 adminibar/auto-exec 'docker pull'
+docker run -v $HOSTPATH_TO_SOCKET:/var/run/docker.sock -p 30000:30000 adminibar/auto-exec 'docker version'
 ```
 
 On a typical Mac OSX boot2docker instance this might look like:
@@ -18,6 +18,6 @@ On a typical Mac OSX boot2docker instance this might look like:
 docker run -v /var/run/docker.sock:/var/run/docker.sock \
 -p 30000:30000 adminibar/auto-exec \
 'docker pull ubuntu' \
-'docker run -p 8080:8080 ubuntu:14:04 echo "hello world"'
+'docker run -p 8080:8080 ubuntu:14.04 echo "hello world"'
 ```
 This will, whenever a http request arrives at port 30000, (1) pull the latest ubuntu images from the default repository and (2) when done spin up a new instance that exposes port 8080 and echos "hello world"
