@@ -1,4 +1,4 @@
-container-updater
+auto-exec
 =================
 
 Automatically Executes commands when a request arrives on the http interface. The container comes with a docker client preinstalled as to make it easier to control the host instance, this requires a host socket to be mounted, e.g:
