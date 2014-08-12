@@ -5,6 +5,7 @@ import (
 	"flag"
 	"fmt"
 	"log"
+	"net"
 	"net/http"
 	"os"
 	"os/exec"
@@ -27,11 +28,20 @@ func (c *Command) Run() error {
 }
 
 func HookHandler(w http.ResponseWriter, r *http.Request) {
+	h, p, err := net.SplitHostPort(r.RemoteAddr)
+	if err != nil {
+		fmt.Errorf("Failed: %s", err)
+		return
+	}
+
+	fmt.Printf("Received request from %s:%s...\n", h, p)
+
 	for _, cmd := range Commands {
 		fmt.Printf("Executing %s...\n", cmd.Args)
 		err := cmd.Run()
 		if err != nil {
 			fmt.Errorf("Failed: %s", err)
+			return
 		}
 	}
 }
